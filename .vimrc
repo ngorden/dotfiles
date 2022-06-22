@@ -1,33 +1,43 @@
-syntax on
-filetype plugin indent on
+let g:using_snippets = 0
 
-set exrc
-set relativenumber
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set smartcase
-set scrolloff=8
-set guifont=Iosevka\ 20
-set guioptions-=m
-set guioptions-=T
-set number
-set ignorecase
-set incsearch
-set cinoptions=l1
-colorscheme desert
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+let g:blamer_show_in_visual_modes = 1
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' '
 
-set nobackup
-set noswapfile
-set noundofile
-
-call plug#begin()
+call plug#begin("~/vimfiles/plugged")
+Plug 'OrangeT/vim-csharp'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nickspoons/vim-sharpenup'
+Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'rhysd/vim-lsp-ale'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'gruvbox-community/gruvbox'
+Plug 'itchyny/lightline.vim'
+Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'preservim/tagbar'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'APZelos/blamer.nvim'
+if has('nvim')
+    function! UpdateRemotePlugins(...)
+        let &rtp=&rtp
+        UpdateRemotePlugins
+    endfunction
+    Plug 'MarcWeber/vim-addon-local-vimrc'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+else
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'gelguy/wilder.nvim'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+if g:using_snippets
+  Plug 'sirver/ultisnips'
+endif
 call plug#end()
-
-let mapleader = " "
-nnoremap <leader>f :Files<CR>
