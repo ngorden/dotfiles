@@ -1,0 +1,13 @@
+require('plugins')
+require('remaps')
+require('settings')
+
+require('ale')
+require('asynccomplete')
+require('colors')
+require('lightline')
+require('nerdtree')
+require('lspsettings')
+require('omnisharp')
+require('sharpenup')
+require('treesitter')
