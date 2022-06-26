@@ -8,6 +8,7 @@ function map(mode, shortcut, cmd)
 end
 
 function nmap(sc, cmd) map('n', sc, cmd) end
+function smap(sc, cmd) map('s', sc, cmd) end
 function vmap(sc, cmd) map('v', sc, cmd) end
 
 nmap('/', '/\\v')
@@ -43,3 +44,21 @@ vmap('<A-l>', '<cmd>MoveHBlock(1)<cr>')
 vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
 nmap('<F8>', '<cmd>TagbarToggle<cr>')
+
+if usingLuaSnip then
+    -- Press <Tab> to expand or jump in a snippet. These can also be mapped separately
+    -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+    -- -1 for jumping backwards
+    vim.cmd([[
+    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+    inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>]])
+
+    smap('<Tab>', "<cmd>lua require('luasnip').jump(1)<cr>")
+    smap('<S-Tab>', "<cmd>lua require('luasnip').jump(-1)<cr>")
+
+    -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
+    vim.cmd([[
+        imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+        smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+    ]])
+end

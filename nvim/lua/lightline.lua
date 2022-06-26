@@ -30,6 +30,12 @@ vim.cmd([[
       \   'linter_ok': 'right'
     \  }
     \}
+
+    augroup sharpenup_lightline_integration
+        autocmd!
+        autocmd User OmniSharpStarted,OmniSharpReady,OmniSharpStopped call lightline#update()
+    augroup END
+
     " Use unicode chars for ale indicators in the statusline
     let g:lightline#ale#indicator_checking = "\uf110 "
     let g:lightline#ale#indicator_infos = "\uf129 "
