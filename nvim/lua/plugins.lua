@@ -7,11 +7,11 @@ usingChadTree = vim.g.using_chadtree > 0 and true or false
 vim.g.using_nerdtree = 0
 usingNerdTree = vim.g.using_nerdtree > 0 and true or false
 
-vim.g.using_snippets = 0
-usingSnippets = vim.g.using_snippets > 0 and true or false
-
 vim.g.using_lua_snip = 1
 usingLuaSnip = vim.g.using_lua_snip > 0 and true or false
+
+vim.g.using_ultisnips = 0
+usingUltisnips = vim.g.using_ultisnips > 0 and true or false
 
 function usePacks()
 	use 'wbthomason/packer.nvim'
@@ -51,7 +51,7 @@ function usePacks()
         use 'preservim/nerdtree'
     end
 
-    if usingSnippets then
+    if usingUltisnips then
         use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'sirver/ultisnips' }
     elseif usingLuaSnip then
         use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }

@@ -24,8 +24,8 @@ vim.cmd([[
     \ 'pageUp': ['<C-b>', '<PageUp>']
     \}
 
-    if g:using_snippets || g:using_lua_snip
-    let g:OmniSharp_want_snippet = 1
+    if g:using_ultisnips || g:using_lua_snip
+        let g:OmniSharp_want_snippet = 1
     endif
 
     let g:OmniSharp_highlight_groups = {
