@@ -1,7 +1,7 @@
 require ('blamer')
 require ('configure_wilder')
 
-vim.g.using_chadtree = 0
+vim.g.using_chadtree = 1
 usingChadTree = vim.g.using_chadtree > 0 and true or false
 
 vim.g.using_nerdtree = 0
@@ -46,7 +46,7 @@ function usePacks()
 	use 'shinchu/lightline-gruvbox.vim'
 
     if usingChadTree then
-        use 'ms-jpq/chadtree'
+        use 'ngorden/chadtree'
     elseif usingNerdTree then
         use 'preservim/nerdtree'
     end
