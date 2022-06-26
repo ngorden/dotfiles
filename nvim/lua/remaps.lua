@@ -45,6 +45,12 @@ vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
 nmap('<F8>', '<cmd>TagbarToggle<cr>')
 
+if usingChadTree then
+    nmap('<F6>', '<cmd>CHADopen<cr>')
+elseif usingNerdTree then
+    nmap('<F6>', '<cmd>NERDTreeToggle<cr>')
+end
+
 if usingLuaSnip then
     -- Press <Tab> to expand or jump in a snippet. These can also be mapped separately
     -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
