@@ -13,6 +13,9 @@ usingLuaSnip = vim.g.using_lua_snip > 0 and true or false
 vim.g.using_ultisnips = 0
 usingUltisnips = vim.g.using_ultisnips > 0 and true or false
 
+vim.g.using_vsnip = 0
+usingVSnip = vim.g.using_vsnip > 0 and true or false
+
 function usePacks()
 	use 'wbthomason/packer.nvim'
 
@@ -55,11 +58,13 @@ function usePacks()
         use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'sirver/ultisnips' }
     elseif usingLuaSnip then
         use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
+    elseif usingVSnip then
+        use { 'hrsh7th/vim-vsnip', requires = 'hrsh7th/vim-vsnip-integ' }
     end
 
     use { 'hrsh7th/nvim-cmp', 
         config = function ()
-            local req = usingLuaSnip and 'luasnip' or usingSnippets and 'ultisnips' or nil
+            local req = usingLuaSnip and 'luasnip' or usingUltisnips and 'ultisnips' or usingVSnip and 'vsnip' or nil
             require 'cmp'.setup {
                 snippet = { expand = function(args) require(req).lsp_expand(args.body) end },
                 sources = { { name = req } }
