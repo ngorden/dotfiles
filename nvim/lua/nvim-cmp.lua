@@ -80,3 +80,9 @@ require('lspconfig')['rust_analyzer'].setup {
 require('lspconfig')['ocamllsp'].setup {
     capabilities = capabilities
 }
+require('lspconfig')['clangd'].setup {
+    capabilities = capabilities
+}
+require('lspconfig')['csharp_ls'].setup {
+    capabilities = capabilities
+}

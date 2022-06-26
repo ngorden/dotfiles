@@ -29,7 +29,6 @@ function usePacks()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
 
     use 'AndrewRadev/diffurcate.vim'
     use 'AndrewRadev/sideways.vim'
@@ -57,6 +56,16 @@ function usePacks()
     elseif usingLuaSnip then
         use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
     end
+
+    use { 'hrsh7th/nvim-cmp', 
+        config = function ()
+            local req = usingLuaSnip and 'luasnip' or usingSnippets and 'ultisnips' or nil
+            require 'cmp'.setup {
+                snippet = { expand = function(args) require(req).lsp_expand(args.body) end },
+                sources = { { name = req } }
+            }
+        end
+    }
 end
 
 return require('packer').startup(usePacks)

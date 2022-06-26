@@ -52,6 +52,10 @@ require('lspconfig')['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
+require('lspconfig')['clangd'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 -- $ dotnet install -g csharp-ls
 require('lspconfig')['csharp_ls'].setup{
     on_attach = require 'virtualtypes'.on_attach
