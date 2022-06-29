@@ -1,23 +1,10 @@
 require ('blamer')
+require ('configure_globals')
 require ('configure_wilder')
-
-vim.g.using_chadtree = 1
-usingChadTree = vim.g.using_chadtree > 0 and true or false
-
-vim.g.using_nerdtree = 0
-usingNerdTree = vim.g.using_nerdtree > 0 and true or false
-
-vim.g.using_lua_snip = 1
-usingLuaSnip = vim.g.using_lua_snip > 0 and true or false
-
-vim.g.using_ultisnips = 0
-usingUltisnips = vim.g.using_ultisnips > 0 and true or false
-
-vim.g.using_vsnip = 0
-usingVSnip = vim.g.using_vsnip > 0 and true or false
 
 function usePacks()
 	use 'wbthomason/packer.nvim'
+    use 'lewis6991/impatient.nvim'
 
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
@@ -28,10 +15,12 @@ function usePacks()
     use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
     use { 'rhysd/vim-lsp-ale', requires = { 'dense-analysis/ale', 'prabirshrestha/vim-lsp' } }
 
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
+    if vim.g.using_cmp_nvim > 0 then
+        use 'hrsh7th/cmp-nvim-lsp'
+        use 'hrsh7th/cmp-buffer'
+        use 'hrsh7th/cmp-path'
+        use 'hrsh7th/cmp-cmdline'
+    end
 
     use 'AndrewRadev/diffurcate.vim'
     use 'AndrewRadev/sideways.vim'
@@ -48,29 +37,34 @@ function usePacks()
     use 'preservim/tagbar'
 	use 'shinchu/lightline-gruvbox.vim'
 
-    if usingChadTree then
+    if vim.g.using_chadtree > 0 then
         use 'ngorden/chadtree'
-    elseif usingNerdTree then
+    elseif vim.g.using_nerdtree > 0 then
         use 'preservim/nerdtree'
     end
 
-    if usingUltisnips then
-        use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'sirver/ultisnips' }
-    elseif usingLuaSnip then
-        use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
-    elseif usingVSnip then
-        use { 'hrsh7th/vim-vsnip', requires = 'hrsh7th/vim-vsnip-integ' }
-    end
-
-    use { 'hrsh7th/nvim-cmp', 
-        config = function ()
-            local req = usingLuaSnip and 'luasnip' or usingUltisnips and 'ultisnips' or usingVSnip and 'vsnip' or nil
-            require 'cmp'.setup {
-                snippet = { expand = function(args) require(req).lsp_expand(args.body) end },
-                sources = { { name = req } }
-            }
+    if vim.g.using_cmp_nvim > 0 then
+        if vim.g.using_ultisnips > 0 then
+            use { 'quangnguyen30192/cmp-nvim-ultisnips', requires = 'sirver/ultisnips' }
+        elseif vim.g.using_lua_snip > 0 then
+            use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
+        elseif vim.g.using_vsnip > 0 then
+            use { 'hrsh7th/vim-vsnip', requires = 'hrsh7th/vim-vsnip-integ' }
         end
-    }
+
+        use { 'hrsh7th/nvim-cmp', 
+            config = function ()
+                local req = vim.g.using_lua_snip > 0 and 'luasnip'
+                    or vim.g.using_ultisnips > 0 and 'ultisnips'
+                    or vim.g.using_vsnip > 0 and 'vsnip' or nil
+
+                require 'cmp'.setup {
+                    snippet = { expand = function(args) require(req).lsp_expand(args.body) end },
+                    sources = { { name = req } }
+                }
+            end
+        }
+    end
 end
 
 return require('packer').startup(usePacks)
