@@ -45,13 +45,13 @@ vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
 nmap('<F8>', '<cmd>TagbarToggle<cr>')
 
-if usingChadTree then
+if vim.g.using_chadtree > 0 then
     nmap('<F6>', '<cmd>CHADopen<cr>')
-elseif usingNerdTree then
+elseif vim.g.using_nerdtree > 0 then
     nmap('<F6>', '<cmd>NERDTreeToggle<cr>')
 end
 
-if usingLuaSnip then
+if vim.g.using_lua_snip > 0 then
     -- Press <Tab> to expand or jump in a snippet. These can also be mapped separately
     -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
     -- -1 for jumping backwards
@@ -69,7 +69,7 @@ if usingLuaSnip then
     ]])
 end
 
-if usingVSnip then
+if vim.g.using_vsnip > 0 then
     vim.cmd([[
         " NOTE: You can use other key to expand snippet.
 

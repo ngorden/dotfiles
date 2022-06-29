@@ -13,3 +13,7 @@ require('nvim-cmp')
 require('omnisharp')
 require('sharpenup')
 require('treesitter')
+
+if vim.g.using_lsp_signature > 0 then
+    require('lsp_signature').setup()
+end

@@ -22,6 +22,10 @@ function usePacks()
         use 'hrsh7th/cmp-cmdline'
     end
 
+    if vim.g.using_lsp_signature > 0 then
+        use 'ray-x/lsp_signature.nvim'
+    end
+
     use 'AndrewRadev/diffurcate.vim'
     use 'AndrewRadev/sideways.vim'
 
