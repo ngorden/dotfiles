@@ -11,9 +11,17 @@ function usePacks()
 
     use { 'gelguy/wilder.nvim', config = configureWilder }
     use { 'jubnzv/virtual-types.nvim', requires = 'neovim/nvim-lspconfig' }
-    use { 'maximbaz/lightline-ale', requires = { 'dense-analysis/ale', 'itchyny/lightline.vim' } }
     use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
     use { 'rhysd/vim-lsp-ale', requires = { 'dense-analysis/ale', 'prabirshrestha/vim-lsp' } }
+
+    if vim.g.using_lightline > 0 then
+        use { 'maximbaz/lightline-ale', requires = { 'dense-analysis/ale', 'itchyny/lightline.vim' } }
+        use 'shinchu/lightline-gruvbox.vim'
+        require('lightline_config')
+    elseif vim.g.using_lualine > 0 then
+        use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+        require('lualine_config')
+    end
 
     if vim.g.using_cmp_nvim > 0 then
         use 'hrsh7th/cmp-nvim-lsp'
@@ -39,7 +47,6 @@ function usePacks()
     use 'OrangeT/vim-csharp'
     use 'prabirshrestha/asyncomplete.vim'
     use 'preservim/tagbar'
-	use 'shinchu/lightline-gruvbox.vim'
 
     if vim.g.using_chadtree > 0 then
         use 'ngorden/chadtree'
