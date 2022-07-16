@@ -1,6 +1,6 @@
 -- gh: arnvald/viml-to-lua
 vim.g.mapleader = ' '
-vim.cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>')
+vim.cmd('noremap <C-c> :noh<cr>:call clearmatches()<cr>')
 
 function map(mode, shortcut, cmd)
     vim.api.nvim_set_keymap(mode, shortcut, cmd,
@@ -33,6 +33,9 @@ nmap('<leader>fg', '<cmd>Telescope live_grep<cr>')
 nmap('<leader>fb', '<cmd>Telescope buffers<cr>')
 nmap('<leader>fh', '<cmd>Telescope help_tags<cr>')
 
+nmap('<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+vmap('<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+
 nmap('<A-j>', '<cmd>MoveLine(1)<cr>')
 nmap('<A-k>', '<cmd>MoveLine(-1)<cr>')
 nmap('<A-l>', '<cmd>SidewaysRight<cr>')
@@ -43,13 +46,7 @@ vmap('<A-k>', '<cmd>MoveBlock(-1)<cr>')
 vmap('<A-l>', '<cmd>MoveHBlock(1)<cr>')
 vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
-nmap('<F8>', '<cmd>TagbarToggle<cr>')
-
-if vim.g.using_chadtree > 0 then
-    nmap('<F6>', '<cmd>CHADopen<cr>')
-elseif vim.g.using_nerdtree > 0 then
-    nmap('<F6>', '<cmd>NERDTreeToggle<cr>')
-end
+nmap('<F6>', '<cmd>CHADopen<cr>')
 
 if vim.g.using_lua_snip > 0 then
     -- Press <Tab> to expand or jump in a snippet. These can also be mapped separately
@@ -66,37 +63,5 @@ if vim.g.using_lua_snip > 0 then
     vim.cmd([[
         imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
         smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-    ]])
-end
-
-if vim.g.using_vsnip > 0 then
-    vim.cmd([[
-        " NOTE: You can use other key to expand snippet.
-
-        " Expand
-        imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-        smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-
-        " Expand or jump
-        imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-        smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-
-        " Jump forward or backward
-        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
-        " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-        " See https://github.com/hrsh7th/vim-vsnip/pull/50
-        nmap        s   <Plug>(vsnip-select-text)
-        xmap        s   <Plug>(vsnip-select-text)
-        nmap        S   <Plug>(vsnip-cut-text)
-        xmap        S   <Plug>(vsnip-cut-text)
-
-        " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-        let g:vsnip_filetypes = {}
-        let g:vsnip_filetypes.javascriptreact = ['javascript']
-        let g:vsnip_filetypes.typescriptreact = ['typescript']
     ]])
 end

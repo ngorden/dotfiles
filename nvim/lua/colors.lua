@@ -10,6 +10,8 @@ vim.cmd([[
         autocmd ColorScheme * highlight link ALEWarningSign ModeMsg
         autocmd ColorScheme * highlight link ALEInfoSign    Identifier
     augroup END
+
+    colorscheme gruvbox
     
     " Use truecolor in the terminal, when it is supported
     if has('termguicolors')
@@ -18,4 +20,3 @@ vim.cmd([[
 ]])
 
 vim.o.background    = 'dark'
-vim.cmd('colorscheme gruvbox')

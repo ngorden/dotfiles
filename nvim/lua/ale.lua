@@ -4,4 +4,4 @@ vim.g.ale_sign_info = '·'
 vim.g.ale_sign_style_error = '·'
 vim.g.ale_sign_style_warning = '·'
 
-vim.cmd("let g:ale_linters = { 'cs': ['OmniSharp'] }")
+vim.g.ale_linters = { cs = { 'OmniSharp' } }
