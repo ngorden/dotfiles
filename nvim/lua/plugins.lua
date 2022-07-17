@@ -48,7 +48,6 @@ function usePacks()
     use 'gruvbox-community/gruvbox'
     use 'MarcWeber/vim-addon-local-vimrc'
     use 'nickspoons/vim-sharpenup'
-    use 'ngorden/chadtree'
     use 'nvim-treesitter/nvim-treesitter'
     use 'OmniSharp/omnisharp-vim'
     use 'OrangeT/vim-csharp'

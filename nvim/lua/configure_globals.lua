@@ -1,4 +1,3 @@
-vim.g.using_chadtree = 1
 vim.g.using_cmp_nvim = 1
 vim.g.using_lsp_signature = 1
 vim.g.using_lualine = 1

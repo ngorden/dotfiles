@@ -47,7 +47,9 @@ vmap('<A-k>', '<cmd>MoveBlock(-1)<cr>')
 vmap('<A-l>', '<cmd>MoveHBlock(1)<cr>')
 vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
-nmap('<F6>', '<cmd>CHADopen<cr>')
+nmap('<F6>', '<cmd>Lex<cr><cmd>vert resize 60<cr>')
+nmap('<C-t>', '<cmd>tabnew<cr>')
+nmap('<C-w>', '<cmd>tabclose<cr>')
 
 nmap('<F8>', '<C-w>s<cmd>terminal<cr><cmd>resize 10<cr>i')
 tmap('<F8>', '<C-\\><C-n><cmd>bd!<cr>')
