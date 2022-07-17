@@ -9,6 +9,7 @@ end
 
 function nmap(sc, cmd) map('n', sc, cmd) end
 function smap(sc, cmd) map('s', sc, cmd) end
+function tmap(sc, cmd) map('t', sc, cmd) end
 function vmap(sc, cmd) map('v', sc, cmd) end
 
 nmap('/', '/\\v')
@@ -47,6 +48,9 @@ vmap('<A-l>', '<cmd>MoveHBlock(1)<cr>')
 vmap('<A-h>', '<cmd>MoveHBlock(-1)<cr>')
 
 nmap('<F6>', '<cmd>CHADopen<cr>')
+
+nmap('<F8>', '<C-w>s<cmd>terminal<cr><cmd>resize 10<cr>i')
+tmap('<F8>', '<C-\\><C-n><cmd>bd!<cr>')
 
 if vim.g.using_lua_snip > 0 then
     -- Press <Tab> to expand or jump in a snippet. These can also be mapped separately
