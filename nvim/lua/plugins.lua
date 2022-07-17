@@ -9,7 +9,6 @@ function usePacks()
 	use 'tpope/vim-rhubarb'
 
     use { 'gelguy/wilder.nvim', config = configureWilder }
-    use { 'jubnzv/virtual-types.nvim', requires = 'neovim/nvim-lspconfig' }
     use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
     use { 'rhysd/vim-lsp-ale', requires = { 'dense-analysis/ale', 'prabirshrestha/vim-lsp' } }
     use { 'pwntester/octo.nvim', requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'kyazdani42/nvim-web-devicons' }, }
