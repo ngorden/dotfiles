@@ -24,6 +24,7 @@ function usePacks()
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
         use 'hrsh7th/cmp-cmdline'
+        use 'neovim/nvim-lspconfig'
 
         use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
         use { 'hrsh7th/nvim-cmp', 
